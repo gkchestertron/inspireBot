@@ -27,7 +27,7 @@ bot.addListener("message", function(from, to, text, message) {
 
 bot.addListener("join", function(channel, who) {
 	// Welcome them in!
-	bot.say(channel, who + ", " + config.quote);
+	bot.say(channel, "Welcome " + who + ", " + config.quote);
 	getQuote();
 });
 
