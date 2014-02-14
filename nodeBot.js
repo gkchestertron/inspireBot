@@ -17,12 +17,18 @@ var bot = new irc.Client(config.server, config.botName, {
 
 // Listen for any message, say to him/her in the room
 bot.addListener("message", function(from, to, text, message) {
-	if (text.toLowerCase().indexOf('inspire') > -1) {
+	if ((text.toLowerCase().indexOf('inspire') > -1) || (text.toLowerCase().indexOf('wat') > -1)) {
 		var textArr = text.split(" ");
 		var name = textArr[textArr.length - 1];
 		bot.say(config.channels[0], name + ", " + config.quote );
 		getQuote();
 	}
+});
+
+bot.addListener("join", function(channel, who) {
+	// Welcome them in!
+	bot.say(channel, who + ", " + config.quote);
+	getQuote();
 });
 
 function getQuote () {
